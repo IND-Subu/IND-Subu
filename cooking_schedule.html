@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Cooking Schedule</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to bottom right, #f8f9fa, #e3f2fd);
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      color: #2b2d42;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+      background: linear-gradient(to right, #74c0fc, #4dabf7);
+      color: white;
+    }
+
+    thead th {
+      font-size: 18px;
+      padding: 16px;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    thead th:last-child {
+      border-right: none;
+    }
+
+    tbody tr {
+      background-color: #ffffff;
+      transition: background-color 0.3s ease;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f1f3f5;
+    }
+
+    tbody tr:hover {
+      background-color: #e3fafc;
+    }
+
+    td {
+      padding: 14px 16px;
+      font-size: 16px;
+      text-align: center;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: #495057;
+      background-color: #ffe066;
+      border-right: 1px solid #dee2e6;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍽️ Daily Cooking Schedule</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>📅 Day</th>
+        <th>🌅 Morning Menu</th>
+        <th>🌆 Evening Menu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monday</td>
+        <td>🍛 Dali, Klara Alu Bhaja, Saga</td>
+        <td>🥗 Dali, Soyabin Kasa</td>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td>🍛 Dali, Phula Kobi Kasa</td>
+        <td>🥘 Dali, Alu & Patra Kobi Bhaja</td>
+      </tr>
+      <tr>
+        <td>Wednesday</td>
+        <td>🐟 Machha Beshar</td>
+        <td>🍲 Machha Curry</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>🍗 Chicken</td>
+        <td>🍛 Dali, Bhaja</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td>🐟 Machha Tarakari</td>
+        <td>🐠 Machha Beshar</td>
+      </tr>
+      <tr>
+        <td>Saturday</td>
+        <td>🥚 Egg Curry</td>
+        <td>🌿 Dali, Soyabin</td>
+      </tr>
+      <tr>
+        <td>Sunday</td>
+        <td>🥚 Egg Curry</td>
+        <td>🍗 Chicken</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
