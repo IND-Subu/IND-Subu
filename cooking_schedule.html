@@ -76,6 +76,12 @@
       border-right: none;
     }
 
+    .highlight-today {
+      background-color: #d3f9d8 !important;
+      font-weight: bold;
+      box-shadow: inset 0 0 0 9999px rgba(0, 128, 0, 0.05);
+    }
+
     @media (max-width: 768px) {
       table, thead, tbody, th, td, tr {
         font-size: 14px;
@@ -87,7 +93,7 @@
 
   <h1>🍽️ Daily Cooking Schedule</h1>
 
-  <table>
+  <table id="scheduleTable">
     <thead>
       <tr>
         <th>📅 Day</th>
@@ -96,43 +102,57 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr data-day="Monday">
         <td>Monday</td>
-        <td>🍛 Dali, Kalara Alu Bhaja, Saga</td>
+        <td>🍛 Dali, Klara Alu Bhaja, Saga</td>
         <td>🥗 Dali, Soyabin Kasa</td>
       </tr>
-      <tr>
+      <tr data-day="Tuesday">
         <td>Tuesday</td>
         <td>🍛 Dali, Phula Kobi Kasa</td>
         <td>🥘 Dali, Alu & Patra Kobi Bhaja</td>
       </tr>
-      <tr>
+      <tr data-day="Wednesday">
         <td>Wednesday</td>
         <td>🐟 Machha Beshar</td>
         <td>🍲 Machha Curry</td>
       </tr>
-      <tr>
+      <tr data-day="Thursday">
         <td>Thursday</td>
         <td>🍗 Chicken</td>
         <td>🍛 Dali, Bhaja</td>
       </tr>
-      <tr>
+      <tr data-day="Friday">
         <td>Friday</td>
         <td>🐟 Machha Tarakari</td>
         <td>🐠 Machha Beshar</td>
       </tr>
-      <tr>
+      <tr data-day="Saturday">
         <td>Saturday</td>
         <td>🥚 Egg Curry</td>
         <td>🌿 Dali, Soyabin</td>
       </tr>
-      <tr>
+      <tr data-day="Sunday">
         <td>Sunday</td>
-        <td> 🐠 Machha Tarakali</td>
+        <td>🥚 Egg Curry</td>
         <td>🍗 Chicken</td>
       </tr>
     </tbody>
   </table>
+
+  <script>
+    // Get current day name
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const todayName = days[new Date().getDay()];
+
+    // Highlight today's row
+    const rows = document.querySelectorAll('#scheduleTable tbody tr');
+    rows.forEach(row => {
+      if (row.dataset.day === todayName) {
+        row.classList.add('highlight-today');
+      }
+    });
+  </script>
 
 </body>
 </html>
