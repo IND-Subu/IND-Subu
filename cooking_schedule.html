@@ -79,9 +79,31 @@
       box-shadow: inset 0 0 0 9999px rgba(0, 128, 0, 0.05);
     }
 
+    .cook-info {
+      margin: 40px auto 0;
+      max-width: 600px;
+      background-color: #e3fcec;
+      border-left: 6px solid #28a745;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      color: #155724;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .cook-info strong {
+      font-size: 20px;
+      color: #0c4128;
+    }
+
     @media (max-width: 768px) {
       table, thead, tbody, th, td, tr {
         font-size: 14px;
+      }
+
+      .cook-info {
+        font-size: 16px;
+        padding: 16px 20px;
       }
     }
   </style>
@@ -94,7 +116,6 @@
     <thead>
       <tr>
         <th>📅 Day</th>
-        <th>👨‍🍳 Cooks</th>
         <th>🌅 Morning Menu</th>
         <th>🌆 Evening Menu</th>
       </tr>
@@ -102,61 +123,74 @@
     <tbody>
       <tr data-day="Monday">
         <td>Monday</td>
-        <td>Sudarshan, Samir</td>
         <td>🍛 Dali, Klara Alu Bhaja, Saga</td>
         <td>🥗 Dali, Soyabin Kasa</td>
       </tr>
       <tr data-day="Tuesday">
         <td>Tuesday</td>
-        <td>Sangram, Papu</td>
         <td>🍛 Dali, Phula Kobi Kasa</td>
         <td>🥘 Dali, Alu & Patra Kobi Bhaja</td>
       </tr>
       <tr data-day="Wednesday">
         <td>Wednesday</td>
-        <td>Benu, Ranjan</td>
         <td>🐟 Machha Beshar</td>
         <td>🍲 Machha Curry</td>
       </tr>
       <tr data-day="Thursday">
         <td>Thursday</td>
-        <td>Sujit, Ranjit</td>
         <td>🍗 Chicken</td>
         <td>🍛 Dali, Bhaja</td>
       </tr>
       <tr data-day="Friday">
         <td>Friday</td>
-        <td>Sudarshan, Samir</td>
         <td>🐟 Machha Tarakari</td>
         <td>🐠 Machha Beshar</td>
       </tr>
       <tr data-day="Saturday">
         <td>Saturday</td>
-        <td>Sangram, Papu</td>
         <td>🥚 Egg Curry</td>
         <td>🌿 Dali, Soyabin</td>
       </tr>
       <tr data-day="Sunday">
         <td>Sunday</td>
-        <td>Benu, Ranjan</td>
         <td>🥚 Egg Curry</td>
         <td>🍗 Chicken</td>
       </tr>
     </tbody>
   </table>
 
+  <div class="cook-info" id="cookInfo">
+    <!-- Cook info will be injected here -->
+  </div>
+
   <script>
-    // Get current day name
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const todayName = days[new Date().getDay()];
+    const todayIndex = new Date().getDay();
+    const todayName = days[todayIndex];
 
     // Highlight today's row
-    const rows = document.querySelectorAll('#scheduleTable tbody tr');
-    rows.forEach(row => {
+    document.querySelectorAll('#scheduleTable tbody tr').forEach(row => {
       if (row.dataset.day === todayName) {
         row.classList.add('highlight-today');
       }
     });
+
+    // Cook rotation every 4 days
+    const cookRotation = [
+      ["Sudarshan", "Samir"],
+      ["Sangram", "Papu"],
+      ["Benu", "Ranjan"],
+      ["Sujit", "Ranjit"]
+    ];
+
+    const cookIndex = todayIndex % cookRotation.length;
+    const cooks = cookRotation[cookIndex];
+
+    // Inject into DOM
+    document.getElementById("cookInfo").innerHTML = `
+      <strong>👨‍🍳 Today's Cooks (${todayName}):</strong><br>
+      ${cooks[0]} and ${cooks[1]}
+    `;
   </script>
 
 </body>
