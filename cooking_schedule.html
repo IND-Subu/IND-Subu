@@ -63,7 +63,7 @@
       background-color: #ffe066;
       font-weight: 600;
       min-width: 80px;
-      width: 1%;
+      width: 15%;
       white-space: nowrap;
     }
 
@@ -197,6 +197,21 @@
       <strong>👨‍🍳 Today's Cooks (${todayName}):</strong>  
       ${cooks[0]} and ${cooks[1]}  
     `;  
+    
+    window.addEventListener("DOMContentLoaded", function () {
+      const tableContainer = document.querySelector(".table-container");
+      const currentHour = new Date().getHours();
+      const scrollToEvening = currentHour >= 14;
+
+      // Delay scroll slightly to ensure rendering
+      setTimeout(() => {
+        if (tableContainer) {
+          tableContainer.scrollTo({
+          left: scrollToEvening ? tableContainer.scrollWidth : 0,
+          behavior: "smooth"});
+        }
+      }, 300); // 300ms delay
+    });
   </script>  
   
 </body>  
