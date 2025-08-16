@@ -40,7 +40,7 @@
       width: 100%;  
       border-collapse: collapse;  
       min-width: 600px;  
-      table-layout: fixed;
+      table-layout: fixed;  
     }  
   
     thead {  
@@ -53,23 +53,23 @@
       text-align: center;  
       font-size: 15px;  
       border-bottom: 1px solid #dee2e6;  
-      white-space: nowrap;
+      white-space: nowrap;  
     }  
   
-    th:first-child, td:first-child {
-      position: sticky;
-      left: 0;
-      z-index: 1;
-      background-color: #ffe066;
-      font-weight: 600;
-      min-width: 80px;
-      width: 15%;
-      white-space: nowrap;
-    }
-
-    thead th:first-child{
-      z-index: 2;
-    }
+    th:first-child, td:first-child {  
+      position: sticky;  
+      left: 0;  
+      z-index: 1;  
+      background-color: #ffe066;  
+      font-weight: 600;  
+      min-width: 80px;  
+      width: 15%;  
+      white-space: nowrap;  
+    }  
+  
+    thead th:first-child {  
+      z-index: 2;  
+    }  
   
     tbody tr:nth-child(even) {  
       background-color: #f1f3f5;  
@@ -87,7 +87,7 @@
       margin: 24px auto 0;  
       max-width: 600px;  
       border-radius: 8px;  
-      text-align: center;
+      text-align: center;  
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);  
       color: var(--highlight-text);  
     }  
@@ -167,13 +167,12 @@
     </table>  
   </div>  
   
-  <div class="cook-info" id="cookInfo">  
-    <!-- Cook info dynamically added here -->  
-  </div>  
+  <div class="cook-info" id="cookInfo"></div>  
   
   <script>  
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];  
-    const todayIndex = new Date().getDay();  
+    const today = new Date();  
+    const todayIndex = today.getDay();  
     const todayName = days[todayIndex];  
   
     // Highlight today's row  
@@ -183,15 +182,19 @@
       }  
     });  
   
-    // Cook rotation every 5 days  
+    // Cook rotation starting from 01/01/2025 (Wednesday)  
     const cookRotation = [  
-      ["Sujit", "Ranjit"],  
-      ["Sudarshan", "Samir"],  
-      ["Benu", "Subrata"],
-      ["Papu", "Rinku"],
-      ["Ranjan", "Krishna"]
+          
+      ["Subrata", "Papu"],  
+      ["Benu", "Ranjan"],  
+        ["Sujit", "Ranjit"],
+      
+      ["Sudarshan", "Samir"]
+    
     ];  
-    const cookIndex = todayIndex % cookRotation.length;  
+    const startDate = new Date("2025-01-01");  
+    const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));  
+    const cookIndex = ((diffDays % cookRotation.length) + cookRotation.length) % cookRotation.length;  
     const cooks = cookRotation[cookIndex];  
   
     // Show cook details  
@@ -199,24 +202,23 @@
       <strong>👨‍🍳 Today's Cooks (${todayName}):</strong>  
       ${cooks[0]} and ${cooks[1]}  
     `;  
-    
-    window.addEventListener("DOMContentLoaded", function () {
-      const tableContainer = document.querySelector(".table-container");
-      const currentHour = new Date().getHours();
-      const scrollToEvening = currentHour >= 14;
-
-      // Delay scroll slightly to ensure rendering
-      setTimeout(() => {
-        if (tableContainer) {
-          tableContainer.scrollTo({
-          left: scrollToEvening ? tableContainer.scrollWidth : 0,
-          behavior: "smooth"
-        });
-      }
-    }, 300); // 300ms delay
-  });
+  
+    // Auto-scroll Morning before 2 PM, Evening after  
+    window.addEventListener("DOMContentLoaded", function () {  
+      const tableContainer = document.querySelector(".table-container");  
+      const currentHour = today.getHours();  
+      const scrollToEvening = currentHour >= 14;  
+  
+      setTimeout(() => {  
+        if (tableContainer) {  
+          tableContainer.scrollTo({  
+            left: scrollToEvening ? tableContainer.scrollWidth : 0,  
+            behavior: "smooth"  
+          });  
+        }  
+      }, 300);  
+    });  
   </script>  
   
-  
 </body>  
-</html>
+</html>  
