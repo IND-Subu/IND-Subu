@@ -84,10 +84,10 @@
       background: var(--cook-box-bg);  
       border-left: 5px solid var(--cook-border);  
       padding: 16px;  
-      text-align: center;
       margin: 24px auto 0;  
       max-width: 600px;  
       border-radius: 8px;  
+      text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);  
       color: var(--highlight-text);  
     }  
@@ -183,12 +183,13 @@
       }  
     });  
   
-    // Cook rotation every 4 days  
+    // Cook rotation every 5 days  
     const cookRotation = [  
       ["Sujit", "Ranjit"],  
       ["Sudarshan", "Samir"],  
-      ["Sangram", "Papu"],  
-      ["Benu", "Ranjan"]  
+      ["Benu", "Subrata"],
+      ["Papu", "Rinku"],
+      ["Ranjan", "Krishna"]
     ];  
     const cookIndex = todayIndex % cookRotation.length;  
     const cooks = cookRotation[cookIndex];  
@@ -209,11 +210,13 @@
         if (tableContainer) {
           tableContainer.scrollTo({
           left: scrollToEvening ? tableContainer.scrollWidth : 0,
-          behavior: "smooth"});
-        }
-      }, 300); // 300ms delay
-    });
+          behavior: "smooth"
+        });
+      }
+    }, 300); // 300ms delay
+  });
   </script>  
+  
   
 </body>  
 </html>
